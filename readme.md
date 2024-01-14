@@ -1,4 +1,4 @@
-# Movies Search App
+# Movies Search App using ReactJs
 - Tech: HTML, CSS, Tailwind CSS, JavaScript, ReactJs
 - Concepts:
     1. Data fetching using hooks
