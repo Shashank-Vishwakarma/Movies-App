@@ -47,7 +47,7 @@ function App() {
       </div>
       <div className='grid grid-cols-4 justify-between'>
         {
-          movies.map((movieData)=>(
+          movies?.map((movieData)=>(
             <MovieCard name={movieData.Title} imageUrl={movieData.Poster}/>
           ))
         }
