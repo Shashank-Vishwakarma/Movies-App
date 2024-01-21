@@ -28,7 +28,6 @@ function MovieCard({name, imageUrl}) {
                 alt="Movie Image" 
                 className="w-fit my-2 px-2"
                 onClick={()=>{
-                    // first fetch data
                     setTimeout(() => {
                         openDialogBox()
                     }, 1000);
@@ -36,10 +35,8 @@ function MovieCard({name, imageUrl}) {
                 }}
             >
             </img>
-            <p className="my-2 text-lg font-bold">{name}</p>
-            <Dialog style={{
-                height: 'h-72'
-            }} onClose={handleDialogBoxClose} open={openDialog}>
+            <p className="my-2 text-lg font-bold px-3 text-center">{name}</p>
+            <Dialog onClose={handleDialogBoxClose} open={openDialog}>
                 <div className="flex justify-between items-center px-2 py-2">
                     <img className="rounded-md" src={imageUrl}/>
                     <p className="mx-2">
