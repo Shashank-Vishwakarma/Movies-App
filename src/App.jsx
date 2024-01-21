@@ -28,12 +28,19 @@ function App() {
         <input 
           className='w-[35%] h-14 bg-slate-300 outline-none border-none px-2 rounded-lg'
           type="text"
+          placeholder='Search for a movie here...'
           value={searchInput}
           onChange={(e)=>setSearchInput(e.target.value)}
         />
         <button
           className='h-14 w-20 mx-2 bg-cyan-700 hover:bg-cyan-800 px-1 py-1 rounded-lg font-bold text-white'
-          onClick={()=>fetchMoviesData()}
+          onClick={()=>{
+            if(searchInput === '') {
+              alert("Please enter a movie name to search!")
+            } else {
+              fetchMoviesData()
+            }
+          }}
         >
           Search
         </button>
