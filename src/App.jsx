@@ -22,7 +22,7 @@ function App() {
   return (
     <>
       <div className="w-full h-20 text-white bg-slate-950 flex justify-center items-center font-bold text-5xl">
-        Movie App
+        My Movie
       </div>
       <div className='flex justify-center my-3'>
         <input 
