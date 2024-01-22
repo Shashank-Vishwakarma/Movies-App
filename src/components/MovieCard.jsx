@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Dialog } from "@mui/material";
 
 function MovieCard({name, imageUrl}) {
@@ -13,11 +13,11 @@ function MovieCard({name, imageUrl}) {
         setOpenDialog(false);
     }
 
-    const fetchMovie = async ()=>{
+    const fetchMovie = useCallback(async ()=>{
         const response = await fetch(`http://www.omdbapi.com/?apikey=b22b4728&t=${name}`);
         const movie = await response.json();
         setMovieData(movie)
-    }
+    }, [name]);
 
     return (
         <div 
