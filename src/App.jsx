@@ -1,10 +1,19 @@
 import { useCallback, useEffect, useState } from 'react'
 import './App.css'
 import MovieCard from './components/MovieCard'
+import Pagination from './components/Pagination';
 
 function App() {
   const [movies, setMovies] = useState([]);
   const [searchInput, setSearchInput] = useState('');
+
+  // pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(8); // setRecordsPerPage is not needed because it does not have any use.
+  const numberOfPages = Math.ceil(movies.length / recordsPerPage);
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentMovies = movies.slice(indexOfFirstRecord, indexOfLastRecord);
 
   const fetchMoviesData = useCallback(async ()=>{
     const response = await fetch(`http://www.omdbapi.com/?apikey=b22b4728&s=${searchInput}`);
@@ -56,15 +65,16 @@ function App() {
       </div>
       <div className='grid grid-cols-4 justify-between'>
         {
-          movies?.map((movieData)=>(
+          currentMovies?.map((movieData)=>(
             <MovieCard name={movieData.Title} imageUrl={movieData.Poster}/>
           ))
         }
       </div>
-      <div className='bg-red-50 w-12 flex justify-between my-12 mx-auto'>
-        <img src="src\images\prev-btn.png"></img>
-        <img src="src\images\next-btn.png"></img>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        numberOfPages={numberOfPages}
+        setCurrentPage={setCurrentPage}
+      />
     </>
   )
 }
