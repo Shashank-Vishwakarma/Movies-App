@@ -12,11 +12,20 @@ function App() {
     setMovies(movie.Search)
   }, [searchInput]);
 
-  // on load
+  // on page load
   useEffect(()=>{
-    fetch("http://www.omdbapi.com/?apikey=b22b4728&s=avengers")
-    .then((data)=> data.json())
-    .then((data)=> setMovies(data.Search))
+    (async ()=>{
+        const response1 = await fetch("http://www.omdbapi.com/?apikey=b22b4728&s=avengers");
+        const data1 = await response1.json();
+        const response2 = await fetch("http://www.omdbapi.com/?apikey=b22b4728&s=pirates");
+        const data2 = await response2.json();
+        const response3 = await fetch("http://www.omdbapi.com/?apikey=b22b4728&s=superman");
+        const data3 = await response3.json();
+        const response4 = await fetch("http://www.omdbapi.com/?apikey=b22b4728&s=game of thrones");
+        const data4 = await response4.json();
+  
+        setMovies([...data1.Search, ...data2.Search, ...data3.Search, ...data4.Search])
+      })();
   },[]);
 
   return (
